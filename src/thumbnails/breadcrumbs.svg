@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 72" width="128" height="72">
+	<title>Breadcrumbs</title>
+	<rect width="128" height="72" rx="6" fill="#eef0f6"/>
+	<rect x="14" y="33" width="22" height="6" rx="3" fill="#9aa2bf"/>
+	<path d="M42 31l5 5-5 5" fill="none" stroke="#9aa2bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	<rect x="53" y="33" width="22" height="6" rx="3" fill="#9aa2bf"/>
+	<path d="M81 31l5 5-5 5" fill="none" stroke="#9aa2bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	<rect x="92" y="33" width="22" height="6" rx="3" fill="#7d86a8"/>
+</svg>

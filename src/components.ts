@@ -41,6 +41,7 @@ export function menuComponents(options: MenuComponentsOptions = {}): ComponentDe
 			description: 'One of the site’s menus, as links (all levels, or a part).',
 			category,
 			component: file('./runtime/Menu.astro'),
+			thumbnail: file('./thumbnails/menu.svg'),
 			props: {
 				menu: menuProp,
 				startLevel: {
@@ -73,6 +74,7 @@ export function menuComponents(options: MenuComponentsOptions = {}): ComponentDe
 			description: 'Where the current page is in a menu (Home › About › Team).',
 			category,
 			component: file('./runtime/Breadcrumbs.astro'),
+			thumbnail: file('./thumbnails/breadcrumbs.svg'),
 			props: {
 				menu: menuProp,
 				homeLabel: {

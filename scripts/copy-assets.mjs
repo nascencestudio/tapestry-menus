@@ -5,6 +5,8 @@ import { join } from 'node:path';
 
 const pkg = join(import.meta.dirname, '..');
 
-for (const file of globSync(['src/**/*.astro', 'src/**/*.d.ts', 'src/**/*.css'], { cwd: pkg })) {
+for (const file of globSync(['src/**/*.astro', 'src/**/*.d.ts', 'src/**/*.css', 'src/thumbnails/*.svg'], {
+	cwd: pkg,
+})) {
 	cpSync(join(pkg, file), join(pkg, file.replace(/^src/, 'dist')));
 }
