@@ -62,7 +62,7 @@ export function tapestryMenus(): TapestryMenusPlugin {
 				addIntegrations({
 					name: PACKAGE_NAME,
 					hooks: {
-						'astro:config:setup': ({ injectRoute, updateConfig }) => {
+						'astro:config:setup': ({ injectRoute, updateConfig, addMiddleware }) => {
 							const routes: Array<[string, string]> = [
 								[MENUS_ROUTE, './runtime/menus-endpoint.js'],
 								[OPTIONS_ROUTE, './runtime/options-endpoint.js'],
@@ -72,6 +72,8 @@ export function tapestryMenus(): TapestryMenusPlugin {
 								injectRoute({ pattern, entrypoint: resolve(entrypoint), prerender: false });
 							}
 							updateConfig({ vite: { optimizeDeps: { include: BROWSER_DEPS } } });
+							// Hides StudioCMS's "Show in navigation" field on the page forms, with a notice (ADR 0002).
+							addMiddleware({ entrypoint: resolve('./runtime/middleware.js'), order: 'pre' });
 						},
 					},
 				});

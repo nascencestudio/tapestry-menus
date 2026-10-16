@@ -6,8 +6,10 @@
  * silently undoing the other change. Straight through the SDK's database client (`usePluginData()`
  * can't save in StudioCMS 0.6.1). Server only.
  */
+
+import { randomBytes } from 'node:crypto';
 import { runSDK, SDKCoreJs } from 'studiocms:sdk';
-import { MENU_ID, type Menu, parseMenu } from '../menus.js';
+import { MENU_ID, type Menu, newId, parseMenu } from '../menus.js';
 
 const PREFIX = '@nascencestudio/tapestry-menu:';
 /** At most this many menus (a site has a handful). */
@@ -99,6 +101,53 @@ export async function deleteMenu(id: string): Promise<void> {
 	if (!MENU_ID.test(id)) return;
 	await SDKCoreJs.dbService.db.deleteFrom('StudioCMSPluginData').where('id', '=', rowId(id)).execute();
 	await runSDK(SDKCoreJs.PLUGINS.clearPluginDataCache()).catch(() => {});
+}
+
+/**
+ * Plugin state (outside the menus' key range: `menus-state` sorts after `menu:\uffff`): whether the
+ * default menu has been set up.
+ */
+const STATE_ROW = '@nascencestudio/tapestry-menus-state';
+export const DEFAULT_MENU_NAME = 'Main navigation';
+
+/**
+ * Create a **Main navigation** menu once, on a site without menus (ADR 0002): called when the Menus page,
+ * Navigation settings or the menu picker is used. A marker row records that it was done, so deleting
+ * every menu later doesn't bring it back; a site that already has menus just gets the marker.
+ */
+export async function ensureDefaultMenu(): Promise<void> {
+	try {
+		const created = await SDKCoreJs.dbService.db.transaction().execute(async (trx) => {
+			const state = await trx
+				.selectFrom('StudioCMSPluginData')
+				.select('id')
+				.where('id', '=', STATE_ROW)
+				.executeTakeFirst();
+			if (state) return false;
+			const existing = await trx
+				.selectFrom('StudioCMSPluginData')
+				.select('id')
+				.where('id', '>=', PREFIX)
+				.where('id', '<', `${PREFIX}\uffff`)
+				.executeTakeFirst();
+			if (!existing) {
+				const menu: Menu = { id: newId('mn_', randomBytes), name: DEFAULT_MENU_NAME, items: [] };
+				await trx
+					.insertInto('StudioCMSPluginData')
+					.values({ id: rowId(menu.id), data: JSON.stringify({ ...menu, rev: 1 }) })
+					.execute();
+			}
+			await trx
+				.insertInto('StudioCMSPluginData')
+				.values({ id: STATE_ROW, data: JSON.stringify({ defaultMenu: true }) })
+				.execute();
+			return !existing;
+		});
+		if (created) await runSDK(SDKCoreJs.PLUGINS.clearPluginDataCache()).catch(() => {});
+	} catch (error) {
+		// Two first visits at once: the other one did it. Anything else: try again next time.
+		console.warn('[tapestry-menus] could not set up the default menu', error);
+	}
 }
 
 const REQUEST_CACHE = Symbol.for('tapestry-menus.request');

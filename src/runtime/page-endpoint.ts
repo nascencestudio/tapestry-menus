@@ -10,7 +10,7 @@ import config from 'virtual:tapestry/config';
 import { pagePath } from '@nascencestudio/tapestry';
 import type { APIRoute } from 'astro';
 import { json, roleOf } from './http.js';
-import { listMenus } from './menus-store.js';
+import { ensureDefaultMenu, listMenus } from './menus-store.js';
 
 export const prerender = false;
 
@@ -26,6 +26,7 @@ export const GET: APIRoute = async (context) => {
 			| { id: string; title?: string | null; slug: string }
 			| undefined;
 		if (!page) return json({ error: 'No such page' }, 404);
+		await ensureDefaultMenu();
 		return json({
 			page: {
 				id: String(page.id),

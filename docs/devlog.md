@@ -5,6 +5,18 @@ in [tapestry-playground](https://github.com/nascencestudio/tapestry-playground/b
 
 ---
 
+## 2026-10-16: "Show in navigation" hidden; a default menu
+
+**Request:** StudioCMS's "Show in navigation" (Basic Information) is confusing next to menus. Checked:
+only `frontendNavigation()` reads it (a flat Markdown list for StudioCMS themes); nothing on our sites.
+The user chose to hide it on every page form and add a visible notice, and a default **Main navigation**
+created once. [ADR 0002](decisions/0002-show-in-navigation-and-default-menu.md). `nav-notice.ts` (pure,
+4 tests) + middleware; `ensureDefaultMenu()` with a marker row. Verified on a fresh scratch site (second
+dev server on port 4500, deleted afterwards): the default menu appears; on the dev site (menus exist)
+only the marker was added.
+
+---
+
 ## 2026-10-16: Menu settings in the sidebar
 
 **Request:** no menu button in the editor's purple bar; menu settings in the right sidebar under the

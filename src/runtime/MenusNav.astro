@@ -8,10 +8,11 @@
 /// <reference types="studiocms/v/types" />
 import { Button } from 'studiocms:ui/components/button';
 import { Icon } from 'studiocms:ui/components/icon';
-import { listMenus } from './menus-store.js';
+import { ensureDefaultMenu, listMenus } from './menus-store.js';
 
 const here = Astro.url.pathname;
 const current = Astro.url.searchParams.get('menu') ?? '';
+await ensureDefaultMenu();
 const menus = await listMenus().catch(() => []);
 const links = [
 	{ id: '', label: 'All menus', icon: 'heroicons:squares-2x2', href: here },

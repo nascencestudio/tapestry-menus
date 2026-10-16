@@ -40,13 +40,15 @@ src/
 ├── index.ts          ← plugin: routes, optimizeDeps, the Menus dashboard page (after Template Management)
 ├── menus.ts          ← model (pure, browser-safe): parseMenu, classSlug, renderMenu, trail, tree ops, applyDrop
 ├── components.ts     ← `/components` export: menuComponents() (tapestry-menu, tapestry-breadcrumbs)
-├── routes.ts         ← /_menus/menus, /_menus/options, /_menus/page (+ Tapestry's /_tapestry/pages)
+├── routes.ts         ← /_menus/menus, /_menus/options, /_menus/page (+ Tapestry's /_tapestry/pages), MENUS_PAGE
+├── nav-notice.ts     ← hides StudioCMS's "Show in navigation" on the page forms + the notice (pure, ADR 0002)
 ├── virtual.d.ts      ← Tapestry's virtual:tapestry/config
 ├── client/           ← browser: api.ts, MenuEditor.tsx (tree, DnD, keyboard), ItemForm.tsx, menus-page.tsx
 │                        (mount + create form), icons.tsx, styles.ts (CSS string, also rendered server-side)
 ├── editor/           ← `/editor` export: mountMenuSettings() + MenuSettings.tsx (Tapestry's panel companion),
 │                        plan.ts (pure: placements, form defaults, which menus to save)
-└── runtime/          ← menus-store.ts (plugin data rows, revisions, per-request cache), menus.ts (`/menus`:
+└── runtime/          ← middleware.ts (nav-notice on the page forms), menus-store.ts (plugin data rows, revisions,
+                         ensureDefaultMenu(), per-request cache), menus.ts (`/menus`:
                          getMenu, getBreadcrumbs), Menu.astro + MenuList.astro, Breadcrumbs.astro,
                          MenusNav.astro + MenusPage.astro (dashboard), endpoints, http.ts
 ```
@@ -78,5 +80,9 @@ src/
 - Row and tool buttons: no `aria-label` that differs from the visible text (axe
   `label-content-name-mismatch`); the level is visually hidden text inside the button.
 - `usePluginData()` can't save in StudioCMS 0.6.1: the store uses `SDKCoreJs.dbService.db`.
+- The plugin's state row (`@nascencestudio/tapestry-menus-state`) sorts outside the menus' key range
+  (`menu:` … `menu:\uffff`); keep other rows outside it too, or `listMenus()` would read them.
+- The page-form middleware must stay a no-op on markup it doesn't recognize (StudioCMS updates):
+  `injectNavNotice()` returns the HTML unchanged; tests cover that.
 - Navigation settings render **inside** StudioCMS's page form (Tapestry's sidebar): no `name` attributes,
   `form="tapestry-detached"` on inputs, `type="button"`, Enter suppressed; else Save submits the page.

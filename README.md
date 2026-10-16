@@ -19,6 +19,9 @@ shown with Menu and Breadcrumbs components in pages, templates, headers and foot
 - **In the page editor:** **Navigation settings** under the settings panel, as in Drupal: "Provide a menu
   link", its title, its parent item (any menu) and a description. Saved at once; editors see where the
   page is linked.
+- **One place for navigation:** StudioCMS's "Show in navigation" field (used only by StudioCMS's
+  ready-made themes) is hidden on the page forms, with a notice pointing here. A **Main navigation**
+  menu is created the first time you use menus.
 - **Unstyled, with predictable classes:** class names come from the labels, so you can style one
   menu or one item: `menu menu--main-navigation`, `menu__item menu__item--about`, plus
   `menu__item--current`, `menu__item--trail` and `menu__item--has-children`. No JavaScript reaches

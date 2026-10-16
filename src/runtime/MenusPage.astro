@@ -11,9 +11,10 @@ import { hasPermission } from '@nascencestudio/tapestry';
 import { getViewer } from '@nascencestudio/tapestry/page';
 import { CSS } from '../client/styles.js';
 import { flatten, MENU_ID } from '../menus.js';
-import { listMenus, loadMenu } from './menus-store.js';
+import { ensureDefaultMenu, listMenus, loadMenu } from './menus-store.js';
 
 const here = Astro.url.pathname;
+await ensureDefaultMenu();
 const viewer = await getViewer(Astro);
 const canEdit = viewer.isLoggedIn && hasPermission(viewer.permissionLevel, 'admin');
 const menuId = Astro.url.searchParams.get('menu') ?? '';

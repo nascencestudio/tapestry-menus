@@ -4,13 +4,14 @@
  */
 import type { APIRoute } from 'astro';
 import { json, roleOf } from './http.js';
-import { listMenus } from './menus-store.js';
+import { ensureDefaultMenu, listMenus } from './menus-store.js';
 
 export const prerender = false;
 
 export const GET: APIRoute = async (context) => {
 	if (!(await roleOf(context)).editor) return json({ error: 'Editors only' }, 403);
 	try {
+		await ensureDefaultMenu();
 		const menus = await listMenus();
 		return json({ options: menus.map(({ menu }) => ({ value: menu.id, label: menu.name })) });
 	} catch (error) {
