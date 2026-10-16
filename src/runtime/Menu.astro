@@ -1,0 +1,50 @@
+---
+/**
+ * `@nascencestudio/tapestry-menus/Menu.astro`: a menu as nested lists in a `<nav>` (ADR 0001), unstyled
+ * (classes from the menu's and items' labels: `menu menu--main-navigation`, `menu__item--about`, plus
+ * `--current`, `--trail`, `--has-children`). Also Tapestry's Menu component. Renders nothing when the
+ * menu doesn't exist or has nothing to show; in the editor's canvas it says so instead.
+ *
+ * @example
+ * <Menu menu="mn_…" />                        all levels
+ * <Menu menu="mn_…" startLevel={2} />         the current section's pages
+ * <Menu menu="mn_…" maxDepth={1} />           the top level only
+ */
+import { inEditorCanvas } from '@nascencestudio/tapestry/page';
+import MenuList from './MenuList.astro';
+import { getMenu } from './menus.js';
+
+interface Props {
+	/** The menu's id (`mn_…`), from Dashboard → Menus. */
+	menu: string;
+	startLevel?: number;
+	/** Levels to show (0: all). */
+	maxDepth?: number;
+	/** The navigation's accessible name (default: the menu's name). */
+	label?: string;
+	class?: string;
+}
+
+const { menu: id, startLevel, maxDepth, label, class: className } = Astro.props;
+const menu = typeof id === 'string' && id ? await getMenu(Astro, id, { startLevel, maxDepth }) : null;
+const canvas = inEditorCanvas(Astro);
+const note = !id
+	? 'Choose a menu in this block’s settings.'
+	: !menu
+		? 'This menu no longer exists.'
+		: 'Nothing to show here on this page.';
+---
+
+{
+	menu && menu.items.length > 0 ? (
+		<nav class:list={[...menu.classes, className]} aria-label={label || menu.name} data-tapestry-menu={menu.id}>
+			<MenuList items={menu.items} level={1} />
+		</nav>
+	) : (
+		canvas && (
+			<p class="tapestry-menus-placeholder" style="margin:0;padding:0.75rem 1rem;border:1px dashed currentColor;font:inherit;font-size:0.875rem">
+				Menu: {note}
+			</p>
+		)
+	)
+}

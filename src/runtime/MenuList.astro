@@ -1,0 +1,40 @@
+---
+/**
+ * One level of a menu (Menu.astro), nesting itself for children. Unstyled: classes only (ADR 0001).
+ * `aria-current="page"` on the current page's link.
+ */
+import type { RenderItem } from '../menus.js';
+
+interface Props {
+	items: RenderItem[];
+	level: number;
+}
+
+const { items, level } = Astro.props;
+---
+
+<ul class={`menu__list menu__list--level-${level}`}>
+	{
+		items.map((item) => (
+			<li class:list={item.classes}>
+				{item.href ? (
+					<a
+						class="menu__link"
+						href={item.href}
+						title={item.description}
+						target={item.newTab ? '_blank' : undefined}
+						rel={item.rel}
+						aria-current={item.current ? 'page' : undefined}
+					>
+						{item.label}
+					</a>
+				) : (
+					<span class="menu__label" title={item.description}>
+						{item.label}
+					</span>
+				)}
+				{item.children.length > 0 && <Astro.self items={item.children} level={level + 1} />}
+			</li>
+		))
+	}
+</ul>

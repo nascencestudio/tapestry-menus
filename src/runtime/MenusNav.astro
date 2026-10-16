@@ -1,0 +1,65 @@
+---
+/**
+ * The Menus page's inner sidebar (ADR 0001): All menus, then each menu. Plain links with StudioCMS's own
+ * inner-sidebar classes, marked active here (StudioCMS's `SidebarLink` decides by path alone, and every
+ * entry shares one path; Tapestry known issue #38's notes). StudioCMS's double-sidebar script expects
+ * #back-to-outer and #show-page (mobile navigation).
+ */
+/// <reference types="studiocms/v/types" />
+import { Button } from 'studiocms:ui/components/button';
+import { Icon } from 'studiocms:ui/components/icon';
+import { listMenus } from './menus-store.js';
+
+const here = Astro.url.pathname;
+const current = Astro.url.searchParams.get('menu') ?? '';
+const menus = await listMenus().catch(() => []);
+const links = [
+	{ id: '', label: 'All menus', icon: 'heroicons:squares-2x2', href: here },
+	...menus.map(({ menu }) => ({
+		id: menu.id,
+		label: menu.name,
+		icon: 'heroicons:bars-3',
+		href: `${here}?menu=${encodeURIComponent(menu.id)}`,
+	})),
+];
+---
+
+<div class="inner-sidebar-header">
+	<Button variant="solid" color="primary" size="md" id="back-to-outer" class="mobile-btn mid-size-btn">
+		<Icon name="heroicons:arrow-left" width={24} height={24} slot="start-content" />
+	</Button>
+	<p class="tapestry-menus-nav__title">Menus</p>
+	<Button variant="solid" color="primary" size="md" id="show-page" class="mobile-btn">
+		<Icon name="heroicons:x-mark" width={24} height={24} slot="start-content" />
+	</Button>
+</div>
+<nav class="tapestry-menus-nav__links" aria-label="Menus" data-tm-nav>
+	{
+		links.map((link) => (
+			<a
+				class:list={['inner-sidebar-link', { active: link.id === current }]}
+				href={link.href}
+				aria-current={link.id === current ? 'page' : undefined}
+				data-tm-nav-link={link.id || 'all'}
+			>
+				<Icon name={link.icon} class="sidebar-link-icon" width={24} height={24} />
+				<span>{link.label}</span>
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.tapestry-menus-nav__title {
+		flex: 1;
+		margin: 0;
+		font-weight: 600;
+		font-size: 1.125rem;
+	}
+	.tapestry-menus-nav__links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		width: 100%;
+	}
+</style>

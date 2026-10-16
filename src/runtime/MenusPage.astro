@@ -1,0 +1,89 @@
+---
+/**
+ * Dashboard → Menus (ADR 0001): every menu, a form to add one (admins), and `?menu=<id>` opens a menu
+ * in the tree editor (client/MenuEditor.tsx; read-only for editors). Saving makes a menu live. The
+ * endpoints check permissions again.
+ */
+/// <reference types="studiocms/v/types" />
+/// <reference path="../virtual.d.ts" />
+import config from 'virtual:tapestry/config';
+import { hasPermission } from '@nascencestudio/tapestry';
+import { getViewer } from '@nascencestudio/tapestry/page';
+import { CSS } from '../client/styles.js';
+import { flatten, MENU_ID } from '../menus.js';
+import { listMenus, loadMenu } from './menus-store.js';
+
+const here = Astro.url.pathname;
+const viewer = await getViewer(Astro);
+const canEdit = viewer.isLoggedIn && hasPermission(viewer.permissionLevel, 'admin');
+const menuId = Astro.url.searchParams.get('menu') ?? '';
+const stored = MENU_ID.test(menuId) ? await loadMenu(menuId) : null;
+const menus = stored ? [] : await listMenus();
+const missing = menuId && !stored;
+const editorProps = stored
+	? JSON.stringify({ initial: stored, canEdit, languages: config.languages, listUrl: here })
+	: '';
+Astro.response.headers.set('Cache-Control', 'private, no-store');
+---
+
+<!-- The styles the client adds too (ensureStyles() sees these), so the page doesn't flash unstyled. -->
+<Fragment set:html={`<style data-tapestry-menus-styles>${CSS}</style>`} />
+<div class="tm-scope" data-tm-page>
+	{
+		stored ? (
+			<div data-tm-mount={editorProps} />
+		) : (
+			<div class="tm-page">
+				{missing && (
+					<p class="tm-notice tm-notice--error" role="alert">
+						That menu no longer exists.
+					</p>
+				)}
+				{!canEdit && (
+					<p class="tm-notice" role="note" data-tm-readonly>
+						Only admins can change menus. You can place menus on pages with the Menu component.
+					</p>
+				)}
+				<p class="tm-help" style="font-size:0.875rem">
+					Menus are lists of links to your pages (or other addresses), nested as deep as you like. Show one with the
+					Menu or Breadcrumbs component in a page, template, header or footer. Changes are live as soon as you save.
+				</p>
+				{canEdit && (
+					<form class="tm-create" data-tm-create>
+						<div class="tm-field">
+							<label class="tm-field__label" for="tm-new-name">
+								New menu
+							</label>
+							<input id="tm-new-name" class="tm-input" maxlength={80} placeholder="e.g. Main navigation" required />
+						</div>
+						<button type="submit" class="tm-button tm-button--primary">
+							Add menu
+						</button>
+						<p class="tm-status" role="status" data-tm-create-status />
+					</form>
+				)}
+				{menus.length > 0 ? (
+					<div class="tm-list" data-tm-list>
+						{menus.map(({ menu }) => (
+							<a class="tm-card" href={`${here}?menu=${encodeURIComponent(menu.id)}`} data-tm-card={menu.id}>
+								<span class="tm-card__name">{menu.name}</span>
+								<span class="tm-help">
+									{flatten(menu.items).length} item{flatten(menu.items).length === 1 ? '' : 's'} ·{' '}
+									<span class="tm-code">{menu.id}</span>
+								</span>
+							</a>
+						))}
+					</div>
+				) : (
+					<p class="tm-help">No menus yet.</p>
+				)}
+			</div>
+		)
+	}
+</div>
+
+<script>
+	import { mountMenusPage } from '../client/menus-page.js';
+
+	mountMenusPage();
+</script>

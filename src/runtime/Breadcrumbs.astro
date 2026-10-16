@@ -1,0 +1,67 @@
+---
+/**
+ * `@nascencestudio/tapestry-menus/Breadcrumbs.astro`: the current page's place in a menu (ADR 0001), e.g.
+ * Home › About › Team. Unstyled (`breadcrumbs`, `breadcrumbs__item`, `breadcrumbs__link`); the current
+ * page is the last item, with `aria-current="page"`. Renders nothing when the page isn't in the menu;
+ * in the editor's canvas it says so instead. Also Tapestry's Breadcrumbs component.
+ */
+import { inEditorCanvas } from '@nascencestudio/tapestry/page';
+import { trail } from '../menus.js';
+import { getMenu } from './menus.js';
+
+interface Props {
+	/** The menu the trail comes from (`mn_…`). */
+	menu: string;
+	/** A first link to the home page with this text (none when empty). */
+	homeLabel?: string;
+	/** The home page's address. Default `/`. */
+	homeHref?: string;
+	class?: string;
+}
+
+const { menu: id, homeLabel, homeHref = '/', class: className } = Astro.props;
+const menu = typeof id === 'string' && id ? await getMenu(Astro, id) : null;
+const items = menu ? trail(menu.items) : [];
+// The home link isn't repeated when the menu's first item is the home page.
+const home = homeLabel && items[0]?.href !== homeHref ? { label: homeLabel, href: homeHref } : null;
+const canvas = inEditorCanvas(Astro);
+const note = !id
+	? 'Choose a menu in this block’s settings.'
+	: !menu
+		? 'This menu no longer exists.'
+		: 'This page isn’t in the menu.';
+---
+
+{
+	items.length > 0 ? (
+		<nav class:list={['breadcrumbs', className]} aria-label="Breadcrumb">
+			<ol class="breadcrumbs__list">
+				{home && (
+					<li class="breadcrumbs__item breadcrumbs__item--home">
+						<a class="breadcrumbs__link" href={home.href}>{home.label}</a>
+					</li>
+				)}
+				{items.map((item, index) => {
+					const last = index === items.length - 1;
+					return (
+						<li class:list={['breadcrumbs__item', { 'breadcrumbs__item--current': last }]}>
+							{last ? (
+								<span class="breadcrumbs__current" aria-current="page">{item.label}</span>
+							) : item.href ? (
+								<a class="breadcrumbs__link" href={item.href}>{item.label}</a>
+							) : (
+								<span class="breadcrumbs__label">{item.label}</span>
+							)}
+						</li>
+					);
+				})}
+			</ol>
+		</nav>
+	) : (
+		canvas && (
+			<p class="tapestry-menus-placeholder" style="margin:0;padding:0.5rem 1rem;border:1px dashed currentColor;font:inherit;font-size:0.875rem">
+				Breadcrumbs: {note}
+			</p>
+		)
+	)
+}
