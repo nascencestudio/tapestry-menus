@@ -1,5 +1,5 @@
 /**
- * The Menus page's and the page dialog's requests (browser). Errors carry the server's message; a
+ * The Menus page's and the Menu settings panel's requests (browser). Errors carry the server's message; a
  * save from an outdated copy rejects with `MenuConflict` holding the current version.
  */
 import type { Menu } from '../menus.js';

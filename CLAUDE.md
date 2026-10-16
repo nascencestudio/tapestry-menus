@@ -8,7 +8,7 @@ session and keep it current.
 Menus for Tapestry sites on StudioCMS ([ADR 0001](docs/decisions/0001-tapestry-menus.md)): any number
 of menus (trees of links to pages or web addresses) edited in Dashboard → Menus, `<Menu>` and
 `<Breadcrumbs>` (unstyled, CSS-safe classes from the labels), Menu and Breadcrumbs components for
-Tapestry's library, and a Menu button in Tapestry's page editor. Requires the Tapestry plugin
+Tapestry's library, and Menu settings under the settings panel of Tapestry's page editor. Requires the Tapestry plugin
 (≥ 0.6.0: the hooks in Tapestry ADR 0042). Nascence Studio, MIT.
 
 Sibling checkouts in `/Volumes/T7/www/`: `tapestry/`, `medialibrary/`, `tapestry-seo/`,
@@ -44,7 +44,8 @@ src/
 ├── virtual.d.ts      ← Tapestry's virtual:tapestry/config
 ├── client/           ← browser: api.ts, MenuEditor.tsx (tree, DnD, keyboard), ItemForm.tsx, menus-page.tsx
 │                        (mount + create form), icons.tsx, styles.ts (CSS string, also rendered server-side)
-├── editor/           ← `/editor` export: openMenuEditor() + MenuDialog.tsx (Tapestry's Menu button)
+├── editor/           ← `/editor` export: mountMenuSettings() + MenuSettings.tsx (Tapestry's panel companion),
+│                        plan.ts (pure: placements, form defaults, which menus to save)
 └── runtime/          ← menus-store.ts (plugin data rows, revisions, per-request cache), menus.ts (`/menus`:
                          getMenu, getBreadcrumbs), Menu.astro + MenuList.astro, Breadcrumbs.astro,
                          MenusNav.astro + MenusPage.astro (dashboard), endpoints, http.ts
@@ -77,5 +78,5 @@ src/
 - Row and tool buttons: no `aria-label` that differs from the visible text (axe
   `label-content-name-mismatch`); the level is visually hidden text inside the button.
 - `usePluginData()` can't save in StudioCMS 0.6.1: the store uses `SDKCoreJs.dbService.db`.
-- The dialog renders into `document.body`, outside the dashboard's page form, but keep the form rules:
-  no `name` attributes, `type="button"`, Enter suppressed in one-line fields.
+- Menu settings render **inside** StudioCMS's page form (Tapestry's sidebar): no `name` attributes,
+  `form="tapestry-detached"` on inputs, `type="button"`, Enter suppressed; else Save submits the page.

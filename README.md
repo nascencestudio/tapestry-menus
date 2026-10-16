@@ -16,8 +16,9 @@ shown with Menu and Breadcrumbs components in pages, templates, headers and foot
 - **Components:** Menu (the whole menu, or one part: "start at level 2" shows the current section's
   pages; "levels to show" limits the depth) and Breadcrumbs (Home › About › Team), in Tapestry's
   component library.
-- **In the page editor:** a **Menu** button shows where the page is linked. Admins can add it to a
-  menu there, or rename, move and remove its entries.
+- **In the page editor:** **Menu settings** under the settings panel, as in Drupal: "Provide a menu
+  link", its title, its parent item (any menu) and a description. Saved at once; editors see where the
+  page is linked.
 - **Unstyled, with predictable classes:** class names come from the labels, so you can style one
   menu or one item: `menu menu--main-navigation`, `menu__item menu__item--about`, plus
   `menu__item--current`, `menu__item--trail` and `menu__item--has-children`. No JavaScript reaches

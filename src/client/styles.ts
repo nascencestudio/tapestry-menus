@@ -1,5 +1,5 @@
 /**
- * Styles of the Menus page and the page editor's Menu dialog, added once when either opens. A string,
+ * Styles of the Menus page and the page editor's Menu settings, added once when either opens. A string,
  * not a CSS import: CSS imported from browser code in a plugin can end up on every public page
  * (Tapestry known issue #32). Themed with the StudioCMS dashboard's variables.
  */
@@ -169,28 +169,11 @@ export const CSS = `
 .tm-create { display: flex; gap: 0.5rem; align-items: flex-end; flex-wrap: wrap; }
 .tm-create .tm-field { flex: 1 1 14rem; }
 
-/* The page editor's Menu dialog */
-.tm-dialog {
-	width: 40rem;
-	max-width: calc(100vw - 2rem);
-	max-height: calc(100vh - 2rem);
-	padding: 0;
-	background: var(--tm-bg);
-	border: 1px solid var(--tm-border);
-	border-radius: var(--tm-radius);
-	box-shadow: 0 16px 48px rgb(0 0 0 / 0.4);
-}
-.tm-dialog::backdrop { background: rgb(0 0 0 / 0.55); }
-.tm-dialog__body { display: flex; flex-direction: column; gap: 1rem; max-height: calc(100vh - 2rem); padding: 1rem 1.25rem; overflow: auto; }
-.tm-dialog__header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
-.tm-dialog__title { margin: 0; font-size: 1rem; font-weight: 600; }
-.tm-menu { display: flex; flex-direction: column; gap: 0.6rem; padding: 0.875rem; background: var(--tm-field); border: 1px solid var(--tm-border); border-radius: var(--tm-radius); }
-.tm-menu__head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-.tm-menu__name { margin: 0; font-size: 0.9375rem; font-weight: 600; }
-.tm-placement { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: flex-end; padding-top: 0.6rem; border-top: 1px solid var(--tm-border); }
-.tm-placement .tm-field { flex: 1 1 12rem; }
-.tm-dialog__footer { display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; }
-.tm-dialog__footer .tm-status { margin-right: auto; }
+/* The page editor's Menu settings (a section under Tapestry's settings panel) */
+.tm-settings { display: flex; flex-direction: column; gap: 0.75rem; }
+.tm-settings__list { margin: 0; padding-left: 1.1rem; }
+.tm-settings__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+.tm-settings__actions .tm-status { margin: 0; }
 `;
 
 let added = false;

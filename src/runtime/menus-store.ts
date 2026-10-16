@@ -2,7 +2,7 @@
 /**
  * Menus in StudioCMS's plugin data table, one row per menu (`@nascencestudio/tapestry-menu:<mn_…>`,
  * data `{ ...menu, rev }`). Re-validated on every read (parseMenu). `rev` counts saves, so a save made
- * from an outdated copy (two people editing, or the dashboard and a page dialog) is refused instead of
+ * from an outdated copy (two people editing, or the dashboard and a page's menu settings) is refused instead of
  * silently undoing the other change. Straight through the SDK's database client (`usePluginData()`
  * can't save in StudioCMS 0.6.1). Server only.
  */
