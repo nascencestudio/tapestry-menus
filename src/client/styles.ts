@@ -1,5 +1,5 @@
 /**
- * Styles of the Menus page and the page editor's Menu settings, added once when either opens. A string,
+ * Styles of the Menus page and the page editor's Navigation settings, added once when either opens. A string,
  * not a CSS import: CSS imported from browser code in a plugin can end up on every public page
  * (Tapestry known issue #32). Themed with the StudioCMS dashboard's variables.
  */
@@ -169,7 +169,7 @@ export const CSS = `
 .tm-create { display: flex; gap: 0.5rem; align-items: flex-end; flex-wrap: wrap; }
 .tm-create .tm-field { flex: 1 1 14rem; }
 
-/* The page editor's Menu settings (a section under Tapestry's settings panel) */
+/* The page editor's Navigation settings (a section under Tapestry's settings panel) */
 .tm-settings { display: flex; flex-direction: column; gap: 0.75rem; }
 .tm-settings__list { margin: 0; padding-left: 1.1rem; }
 .tm-settings__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }

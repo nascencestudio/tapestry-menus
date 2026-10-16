@@ -1,5 +1,5 @@
 /**
- * The page editor's **Menu settings** (ADR 0001), a section under Tapestry's settings panel like
+ * The page editor's **Navigation settings** (ADR 0001), a section under Tapestry's settings panel like
  * Drupal's node sidebar: "Provide a menu link", its title, its parent (a menu's top level or an item in
  * any menu) and a description. Saving updates the menu at once (live; not part of the page's draft).
  * When the page is linked more than once, the first link is edited here and the others are listed.

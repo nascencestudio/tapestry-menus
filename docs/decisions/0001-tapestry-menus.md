@@ -46,8 +46,9 @@ No StudioCMS plugin does this.
    The tree editor reorders and nests items by drag and drop, with buttons for keyboards (move up and
    down, in and out, add under, remove); the item's settings are shown beside the tree. **No drafts:
    saving makes a menu live.**
-8. **Menu settings in the page editor** (the user's "yes, in the first version"), like Drupal's node
-   sidebar: a **Menu settings** section under Tapestry's settings panel (Tapestry ADR 0042's panel
+8. **Navigation settings in the page editor** (the user's "yes, in the first version"), like Drupal's node
+   sidebar: a **Navigation settings** section under Tapestry's settings panel (not "Menu settings": that
+   could be mistaken for a selected Menu component's settings) (Tapestry ADR 0042's panel
    companions; first built as a Menu button with a dialog, moved there at the user's request on
    2026-10-16). "Provide a menu link", the link's title, its parent item (each menu's top level or any
    item, in one list) and a description; **Save menu link** applies it at once (live, not part of the
@@ -59,7 +60,7 @@ No StudioCMS plugin does this.
 
 ## Dependencies (review)
 
-At runtime in the browser (the Menus page and the Menu settings panel only; public pages get none):
+At runtime in the browser (the Menus page and the Navigation settings panel only; public pages get none):
 
 | Package | Version | Unpacked (npm) | Provenance | Dependencies | Note |
 | --- | --- | --- | --- | --- | --- |
@@ -68,7 +69,7 @@ At runtime in the browser (the Menus page and the Menu settings panel only; publ
 | @atlaskit/pragmatic-drag-and-drop-hitbox | 3.0.0 | 399 KB | no | `@babel/runtime`, the package above | its `tree-item` hitbox (Tapestry uses `list-item`) |
 
 All three are already in every Tapestry site at the same versions (one copy each in the playground).
-Bundled sizes: the Menus page ~22 KB gzipped, the Menu settings panel ~11 KB including Preact (shared with Tapestry's editor when deduplicated). The Atlassian
+Bundled sizes: the Menus page ~22 KB gzipped, the Navigation settings panel ~11 KB including Preact (shared with Tapestry's editor when deduplicated). The Atlassian
 packages have no npm provenance. Tapestry ADR 0007 accepted that with mitigations, which apply here too:
 the release-age gate, exact pins, a tiny transitive tree, and the `trustPolicy` check in
 `pnpm-workspace.yaml`.

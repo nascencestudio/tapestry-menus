@@ -12,6 +12,7 @@ component settings, like Drupal. `MenuSettings.tsx` (Provide a menu link, title,
 menus, description, Save menu link) replaces the dialog, mounted by Tapestry's new panel companions
 (Tapestry ADR 0042). `plan.ts` decides which menus to save (moving a link between menus takes its
 children; the new menu is saved first); 6 unit tests. Playground `menus` and `a11y` suites updated.
+Then renamed **Navigation settings** (not to be confused with a selected Menu component's settings).
 
 ---
 

@@ -8,7 +8,7 @@ session and keep it current.
 Menus for Tapestry sites on StudioCMS ([ADR 0001](docs/decisions/0001-tapestry-menus.md)): any number
 of menus (trees of links to pages or web addresses) edited in Dashboard → Menus, `<Menu>` and
 `<Breadcrumbs>` (unstyled, CSS-safe classes from the labels), Menu and Breadcrumbs components for
-Tapestry's library, and Menu settings under the settings panel of Tapestry's page editor. Requires the Tapestry plugin
+Tapestry's library, and Navigation settings under the settings panel of Tapestry's page editor. Requires the Tapestry plugin
 (≥ 0.6.0: the hooks in Tapestry ADR 0042). Nascence Studio, MIT.
 
 Sibling checkouts in `/Volumes/T7/www/`: `tapestry/`, `medialibrary/`, `tapestry-seo/`,
@@ -78,5 +78,5 @@ src/
 - Row and tool buttons: no `aria-label` that differs from the visible text (axe
   `label-content-name-mismatch`); the level is visually hidden text inside the button.
 - `usePluginData()` can't save in StudioCMS 0.6.1: the store uses `SDKCoreJs.dbService.db`.
-- Menu settings render **inside** StudioCMS's page form (Tapestry's sidebar): no `name` attributes,
+- Navigation settings render **inside** StudioCMS's page form (Tapestry's sidebar): no `name` attributes,
   `form="tapestry-detached"` on inputs, `type="button"`, Enter suppressed; else Save submits the page.

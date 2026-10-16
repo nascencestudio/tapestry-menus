@@ -1,7 +1,7 @@
 /// <reference types="studiocms/v/types" />
 /// <reference path="../virtual.d.ts" />
 /**
- * `/_menus/page?id=<page id>` (editors): what the page editor's Menu settings need (ADR 0001): the page
+ * `/_menus/page?id=<page id>` (editors): what the page editor's Navigation settings need (ADR 0001): the page
  * (title, path) and every menu, so it can show where the page is linked. Changes are saved through
  * `/_menus/menus` like the dashboard's (admins only, refused when the menu changed meanwhile).
  */

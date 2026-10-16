@@ -6,7 +6,7 @@
  * - `<Menu>` and `<Breadcrumbs>` (`@nascencestudio/tapestry-menus/Menu.astro`, `/Breadcrumbs.astro`),
  *   unstyled, with CSS-safe classes from the labels; `getMenu()` (`/menus`) for your own markup.
  * - Menu and Breadcrumbs components for Tapestry's library (`menuComponents()` from `/components`).
- * - **Menu settings** under the settings panel of Tapestry's page editor (as in Drupal): the page's menu link.
+ * - **Navigation settings** under the settings panel of Tapestry's page editor (as in Drupal): the page's menu link.
  * Requires Tapestry (`@nascencestudio/tapestry` 0.6 or later), listed before this plugin.
  */
 import { fileURLToPath } from 'node:url';

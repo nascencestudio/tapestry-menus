@@ -1,5 +1,5 @@
 /**
- * The page editor's Menu settings as data (pure): where the page is linked, the form's starting values,
+ * The page editor's Navigation settings as data (pure): where the page is linked, the form's starting values,
  * and which menus to save to apply it (ADR 0001).
  */
 import type { StoredMenu } from '../client/api.js';

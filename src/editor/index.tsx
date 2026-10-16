@@ -1,7 +1,7 @@
 /**
- * `@nascencestudio/tapestry-menus/editor`: the page editor's **Menu settings** panel (ADR 0001).
+ * `@nascencestudio/tapestry-menus/editor`: the page editor's **Navigation settings** panel (ADR 0001).
  * Tapestry loads this on demand when tapestry-menus is installed and calls `mountMenuSettings()` the
- * first time its Menu settings section (under the settings panel) is opened (Tapestry ADR 0042).
+ * first time its Navigation settings section (under the settings panel) is opened (Tapestry ADR 0042).
  */
 import { render } from 'preact';
 import { ensureStyles } from '../client/styles.js';
