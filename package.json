@@ -50,7 +50,7 @@
   "peerDependencies": {
     "@nascencestudio/tapestry": "^0.6.0",
     "astro": "^7.0.0",
-    "studiocms": "^0.6.0"
+    "studiocms": "^0.6.0 || ^0.7.0"
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "4.0.0",

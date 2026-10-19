@@ -29,7 +29,7 @@ shown with Menu and Breadcrumbs components in pages, templates, headers and foot
 
 ## Requirements
 
-- Node ≥ 22.12, Astro 7, StudioCMS 0.6, Tapestry ≥ 0.6
+- Node ≥ 22.12, Astro 7, StudioCMS 0.6 or 0.7, Tapestry ≥ 0.6
 
 ## Install
 
