@@ -8,7 +8,8 @@ import { cleanLinkValue, type LinkValue } from '@nascencestudio/tapestry/links';
 
 export const MENU_ID = /^mn_[a-z0-9]{16}$/;
 export const ITEM_ID = /^mi_[a-z0-9]{12}$/;
-export const LIMITS = { name: 80, label: 100, description: 200, className: 100, depth: 6, items: 300 } as const;
+/** `name` 50: menu names show in the sidebar, the menu picker and Navigation settings; keep them short. */
+export const LIMITS = { name: 50, label: 100, description: 200, className: 100, depth: 6, items: 300 } as const;
 const LANG = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/;
 /** Extra classes: space-separated CSS identifiers. */
 const CLASS_TOKEN = /^-?[_a-zA-Z][_a-zA-Z0-9-]{0,49}$/;

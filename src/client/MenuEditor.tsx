@@ -243,27 +243,33 @@ export function MenuEditor({ initial, canEdit, languages, listUrl }: Props) {
 					Only admins can change menus. You can place menus on pages with the Menu component.
 				</p>
 			)}
-			<div class="tm-page__header">
-				<div class="tm-field tm-page__name">
-					<label class="tm-field__label" for={`${uid}-name`}>
-						Menu name
-					</label>
-					<input
-						id={`${uid}-name`}
-						class="tm-input"
-						value={menu.name}
-						maxLength={LIMITS.name}
-						disabled={!canEdit}
-						data-tm-field="menu-name"
-						onInput={(e) => change({ ...menu, name: e.currentTarget.value })}
-					/>
-					<p class="tm-help">
-						Class: <span class="tm-code">menu--{classSlug(menu.name, 'menu')}</span> · id:{' '}
-						<span class="tm-code">{menu.id}</span>
-					</p>
+			{/* The menu itself: its name, then a bar with the status and the menu's actions (like a template's card). */}
+			<section class="tm-group" aria-label="Menu">
+				<div class="tm-group__body">
+					<div class="tm-field tm-name-field">
+						<label class="tm-field__label" for={`${uid}-name`}>
+							Menu name
+						</label>
+						<input
+							id={`${uid}-name`}
+							class="tm-input"
+							value={menu.name}
+							maxLength={LIMITS.name}
+							disabled={!canEdit}
+							data-tm-field="menu-name"
+							onInput={(e) => change({ ...menu, name: e.currentTarget.value })}
+						/>
+						<p class="tm-help">
+							Class: <span class="tm-code">menu--{classSlug(menu.name, 'menu')}</span> · id:{' '}
+							<span class="tm-code">{menu.id}</span>
+						</p>
+					</div>
 				</div>
 				{canEdit && (
-					<div class="tm-page__actions">
+					<div class="tm-group__bar">
+						<p class="tm-status tm-group__status" role="status" data-kind={status?.kind} data-tm-status>
+							{status?.text ?? (dirty ? 'Unsaved changes.' : 'All changes saved.')}
+						</p>
 						<button type="button" class="tm-button" onClick={() => addNew(null)} data-tm-add-top>
 							<PlusIcon /> Add item
 						</button>
@@ -287,10 +293,7 @@ export function MenuEditor({ initial, canEdit, languages, listUrl }: Props) {
 						</button>
 					</div>
 				)}
-			</div>
-			<p class="tm-status" role="status" data-kind={status?.kind} data-tm-status>
-				{status?.text ?? (dirty ? 'Unsaved changes.' : '')}
-			</p>
+			</section>
 			{conflict && (
 				<p class="tm-notice tm-notice--error" role="alert">
 					Someone else saved this menu meanwhile.{' '}

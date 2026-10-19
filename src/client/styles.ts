@@ -81,9 +81,13 @@ export const CSS = `
 
 /* The Menus page */
 .tm-page { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 2rem; }
-.tm-page__header { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
-.tm-page__name { flex: 1 1 16rem; }
-.tm-page__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+/* A menu's card: its name, then a darker bar with the status and actions (like Template Management). */
+.tm-group { overflow: hidden; background: var(--tm-bg); border: 1px solid var(--tm-border); border-radius: var(--tm-radius); }
+.tm-group__body { padding: 1rem; }
+.tm-group__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; padding: 0.6rem 1rem; background: var(--tm-row); }
+.tm-group__status { margin: 0 auto 0 0; }
+/* Names are short (50 characters): a field that fits them, not the page's width. */
+.tm-name-field { max-width: 24rem; }
 .tm-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem); gap: 1rem; align-items: start; }
 @container (max-width: 52rem) { .tm-layout { grid-template-columns: minmax(0, 1fr); } }
 .tm-page { container-type: inline-size; }
@@ -166,8 +170,8 @@ export const CSS = `
 .tm-card { display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem; color: inherit; text-decoration: none; background: var(--tm-bg); border: 1px solid var(--tm-border); border-radius: var(--tm-radius); }
 .tm-card:hover { border-color: var(--tm-primary); }
 .tm-card__name { font-weight: 600; font-size: 1rem; }
-.tm-create { display: flex; gap: 0.5rem; align-items: flex-end; flex-wrap: wrap; }
-.tm-create .tm-field { flex: 1 1 14rem; }
+.tm-create { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+.tm-create .tm-field { width: 100%; }
 
 /* The page editor's Navigation settings (a section under Tapestry's settings panel) */
 .tm-settings { display: flex; flex-direction: column; gap: 0.75rem; }

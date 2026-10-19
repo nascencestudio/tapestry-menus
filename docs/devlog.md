@@ -5,6 +5,15 @@ in [tapestry-playground](https://github.com/nascencestudio/tapestry-playground/b
 
 ---
 
+## 2026-10-19: Menus page layout
+
+Menu names: 50 characters at most (was 80), in a field about 40 characters wide (24rem) with "Up to 50
+characters." and Add menu below it. The menu editor's name and its actions are one card: the name, then a
+darker bar (no line above) with the status, Add item, Save and Delete menu, like a template's card in
+Template Management (whose bar also lost its top line). Playground `menus` suite checks both layouts.
+
+---
+
 ## 2026-10-16: "Show in navigation" hidden; a default menu
 
 **Request:** StudioCMS's "Show in navigation" (Basic Information) is confusing next to menus. Checked:

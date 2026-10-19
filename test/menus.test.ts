@@ -100,6 +100,8 @@ describe('parseMenu', () => {
 		expect(parseMenu({ ...menu, id: 'mn_short' })).toBeNull();
 		expect(parseMenu({ ...menu, id: '__proto__' })).toBeNull();
 		expect(parseMenu({ ...menu, name: '  \n ' })).toBeNull();
+		expect(parseMenu({ ...menu, name: 'n'.repeat(80) })?.name).toHaveLength(LIMITS.name);
+		expect(LIMITS.name).toBe(50);
 	});
 
 	it('drops unknown keys, bad items and duplicate ids', () => {

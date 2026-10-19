@@ -18,7 +18,8 @@ No StudioCMS plugin does this.
    `@nascencestudio/tapestry/links`, and the companion button in the page editor.
 2. **Data: one row per menu** in StudioCMS's plugin data table (`@nascencestudio/tapestry-menu:<mn_…>`),
    a tree of items, re-validated on every read and every save (`parseMenu`): ids of a fixed shape,
-   one-line labels and descriptions with length limits, links in Tapestry's canonical form (a page id
+   one-line names (50 characters: they show in the sidebar, the menu picker and Navigation settings),
+   labels and descriptions with length limits, links in Tapestry's canonical form (a page id
    or a safe web address: relative, http(s), mailto, tel), at most 6 levels and 300 items, unknown
    keys dropped. A save counts revisions; a save from an outdated copy is refused (409) instead of
    undoing someone else's change.

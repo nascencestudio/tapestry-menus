@@ -10,7 +10,7 @@ import config from 'virtual:tapestry/config';
 import { hasPermission } from '@nascencestudio/tapestry';
 import { getViewer } from '@nascencestudio/tapestry/page';
 import { CSS } from '../client/styles.js';
-import { flatten, MENU_ID } from '../menus.js';
+import { flatten, LIMITS, MENU_ID } from '../menus.js';
 import { ensureDefaultMenu, listMenus, loadMenu } from './menus-store.js';
 
 const here = Astro.url.pathname;
@@ -51,11 +51,19 @@ Astro.response.headers.set('Cache-Control', 'private, no-store');
 				</p>
 				{canEdit && (
 					<form class="tm-create" data-tm-create>
-						<div class="tm-field">
+						<div class="tm-field tm-name-field">
 							<label class="tm-field__label" for="tm-new-name">
 								New menu
 							</label>
-							<input id="tm-new-name" class="tm-input" maxlength={80} placeholder="e.g. Main navigation" required />
+							<input
+								id="tm-new-name"
+								class="tm-input"
+								maxlength={LIMITS.name}
+								placeholder="e.g. Main navigation"
+								aria-describedby="tm-new-name-help"
+								required
+							/>
+							<p class="tm-help" id="tm-new-name-help">Up to {LIMITS.name} characters.</p>
 						</div>
 						<button type="submit" class="tm-button tm-button--primary">
 							Add menu
