@@ -79,7 +79,7 @@ src/
 - Inline `style` in the canvas placeholders is component code, not content (content can't add styles).
 - Row and tool buttons: no `aria-label` that differs from the visible text (axe
   `label-content-name-mismatch`); the level is visually hidden text inside the button.
-- `usePluginData()` can't save in StudioCMS 0.6.1: the store uses `SDKCoreJs.dbService.db`.
+- `usePluginData()` can't save in StudioCMS 0.6.1 or 0.7.0: the store uses `SDKCoreJs.dbService.db`.
 - The plugin's state row (`@nascencestudio/tapestry-menus-state`) sorts outside the menus' key range
   (`menu:` … `menu:\uffff`); keep other rows outside it too, or `listMenus()` would read them.
 - The page-form middleware must stay a no-op on markup it doesn't recognize (StudioCMS updates):
