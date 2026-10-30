@@ -9,7 +9,7 @@ Menus for Tapestry sites on StudioCMS ([ADR 0001](docs/decisions/0001-tapestry-m
 of menus (trees of links to pages or web addresses) edited in Dashboard → Menus, `<Menu>` and
 `<Breadcrumbs>` (unstyled, CSS-safe classes from the labels), Menu and Breadcrumbs components for
 Tapestry's library, and Navigation settings under the settings panel of Tapestry's page editor. Requires the Tapestry plugin
-(≥ 0.6.0: the hooks in Tapestry ADR 0042). Nascence Studio, MIT.
+(≥ 0.7.0, the first release with the hooks in Tapestry ADR 0042). Nascence Studio, MIT.
 
 Sibling checkouts in `/Volumes/T7/www/`: `tapestry/`, `medialibrary/`, `tapestry-seo/`,
 `tapestry-playground/` (dev site and browser tests: `e2e/menus.e2e.mjs`, menu states in
