@@ -58,10 +58,10 @@
     "preact": "^10.29.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.3",
     "@nascencestudio/tapestry": "0.7.0",
     "@types/node": "22.20.4",
-    "astro": "7.4.1",
+    "astro": "7.4.2",
     "studiocms": "0.7.0",
     "typescript": "6.0.3",
     "vitest": "5.0.5"
