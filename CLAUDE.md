@@ -18,9 +18,9 @@ this repo has its own short one.
 
 ## Status
 
-- First version built 2026-10-16 (0.1.0, not on GitHub or npm yet). Develops against Tapestry from
-  `file:../tapestry` (branch `companion-hooks`, 0.6.0 unreleased); switch to the npm version once
-  it's out. The first npm release needs a one-time token (trusted publishing needs the package to exist).
+- **0.1.0 released 2026-10-31** (GitHub `nascencestudio/tapestry-menus`, npm with provenance), on Tapestry
+  ≥ 0.7.0 (dev dependency from npm). Releases: bump `version`, PR, merge, GitHub release `v<version>`,
+  approve the staged version on npmjs.com (trusted publishing only; no tokens).
 
 ## Rules
 
