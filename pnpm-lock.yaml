@@ -176,8 +176,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.2.0
+        version: 11.2.0
     devDependencies:
       '@biomejs/biome':
         specifier: 2.6.8
@@ -2321,6 +2321,14 @@ packages:
     resolution: {integrity: sha512-ej2aVZ+vZ8WO7tvlQWRM9N63A0KzF9q4mWJfDUHgYaIofWY9hu74QdnQrjoPMmZi2/nZ5gN0bJCQF49xQqx09Q==}
     peerDependencies:
       preact-render-to-string: '>=5'
+    peerDependenciesMeta:
+      preact-render-to-string:
+        optional: true
+
+  preact@11.2.0:
+    resolution: {integrity: sha512-/HfHI/7N84e6GrWBJ3J280z3mLaRJiDcSvj/A+y/4AbLnND/1UlGHe1sR6oYuTGwId0nP7dqDU9OnLxMPZ7xBg==}
+    peerDependencies:
+      preact-render-to-string: '>=6.7.0'
     peerDependenciesMeta:
       preact-render-to-string:
         optional: true
@@ -4717,6 +4725,8 @@ snapshots:
       source-map-js: 1.2.2
 
   preact@10.29.8: {}
+
+  preact@11.2.0: {}
 
   prismjs@1.30.0: {}
 
