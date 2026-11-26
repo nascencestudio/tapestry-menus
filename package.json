@@ -1,6 +1,6 @@
 {
   "name": "@nascencestudio/tapestry-menus",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Menus for Tapestry sites on StudioCMS: several menus edited in the dashboard, Menu and Breadcrumbs components, and menu settings in the page editor",
   "license": "MIT",
   "author": "Nascence Studio",
@@ -55,11 +55,11 @@
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "4.0.0",
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "3.0.0",
-    "preact": "^10.29.8"
+    "preact": "11.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.8",
-    "@nascencestudio/tapestry": "0.7.2",
+    "@nascencestudio/tapestry": "0.7.4",
     "@types/node": "22.20.5",
     "astro": "7.4.13",
     "studiocms": "0.7.0",
