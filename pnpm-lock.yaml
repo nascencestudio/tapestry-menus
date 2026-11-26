@@ -183,8 +183,8 @@ importers:
         specifier: 2.6.8
         version: 2.6.8
       '@nascencestudio/tapestry':
-        specifier: 0.7.2
-        version: 0.7.2(astro@7.4.13(@types/node@22.20.5)(esbuild@0.28.2)(yaml@2.9.1))(studiocms@0.7.0(a1ba8a9232c9974dc0bcd56f16b3d836))
+        specifier: 0.7.4
+        version: 0.7.4(astro@7.4.13(@types/node@22.20.5)(esbuild@0.28.2)(yaml@2.9.1))(studiocms@0.7.0(a1ba8a9232c9974dc0bcd56f16b3d836))
       '@types/node':
         specifier: 22.20.5
         version: 22.20.5
@@ -1118,8 +1118,8 @@ packages:
       '@emnapi/core': ^1.7.1 || 2.0.0-beta.2 || 2.0.0-beta.3
       '@emnapi/runtime': ^1.7.1 || 2.0.0-beta.2 || 2.0.0-beta.3
 
-  '@nascencestudio/tapestry@0.7.2':
-    resolution: {integrity: sha512-VD63g/+HB6euiQAQN5puRFKU0flmbiM6BEOy0IhpV35L19KgLourPZkxHzhPGkHPgDCp5pLGp3GhLi+m9pC2NA==}
+  '@nascencestudio/tapestry@0.7.4':
+    resolution: {integrity: sha512-4GQRd64qy5XQwxyXvYYbbDsa6qhOe9zGrUerbJ+J3b4RVUYtHwI4Z3tbU7gwVWV50MIL6phN8+/c87oNtGD5yA==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
       '@nascencestudio/medialibrary': ^0.1.0 || ^0.2.0
@@ -2317,14 +2317,6 @@ packages:
     resolution: {integrity: sha512-RVHEU9/Pp1Fnjr/MpAJsZoADukCKhfIi15OunEYiGktIkYLkPVvC1sioWolGDS7XByMTx9m/IGbro0Js13zhnQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  preact@10.29.8:
-    resolution: {integrity: sha512-ej2aVZ+vZ8WO7tvlQWRM9N63A0KzF9q4mWJfDUHgYaIofWY9hu74QdnQrjoPMmZi2/nZ5gN0bJCQF49xQqx09Q==}
-    peerDependencies:
-      preact-render-to-string: '>=5'
-    peerDependenciesMeta:
-      preact-render-to-string:
-        optional: true
-
   preact@11.2.0:
     resolution: {integrity: sha512-/HfHI/7N84e6GrWBJ3J280z3mLaRJiDcSvj/A+y/4AbLnND/1UlGHe1sR6oYuTGwId0nP7dqDU9OnLxMPZ7xBg==}
     peerDependencies:
@@ -2353,9 +2345,6 @@ packages:
   prosemirror-keymap@1.2.3:
     resolution: {integrity: sha512-4HucRlpiLd1IPQQXNqeo81BGtkY8Ai5smHhKW9jjPKRc2wQIxksg7Hl1tTI2IfT2B/LgX6bfYvXxEpJl7aKYKw==}
 
-  prosemirror-model@1.25.12:
-    resolution: {integrity: sha512-Ue2gTmXMa7EhpLNhC7J+h4+ykD8ha12K6rrZFFKKJHBForfIStw5gJ6Zrf1mqqAa9NmpmEB4wp9bKmA4eUVjWg==}
-
   prosemirror-model@1.25.13:
     resolution: {integrity: sha512-MlDMWGjYXaYOeCiO17jcybntCOzPnN+97U0809ke2QsgPtxW3n5/sD6ZKyJONUgMw1iP93ohZTjeKjnRJ7L6kQ==}
 
@@ -2365,14 +2354,8 @@ packages:
   prosemirror-state@1.4.4:
     resolution: {integrity: sha512-6jiYHH2CIGbCfnxdHbXZ12gySFY/fz/ulZE333G6bPqIZ4F+TXo9ifiR86nAHpWnfoNjOb3o5ESi7J8Uz1jXHw==}
 
-  prosemirror-transform@1.12.2:
-    resolution: {integrity: sha512-PE/aY0HEY4zczvmqrilgkUK/WautF0chvMqkmM/iN5/aPHvwrCWaQZjS6CIZp+K84YrvPFqrL+YArrfJX8xX7g==}
-
   prosemirror-transform@1.12.7:
     resolution: {integrity: sha512-/e87cbxcM5WJOJrL1IrM9gJqO3EK8LdQoPvs+r4ss1lRO5t5QeqkU0SlmDvcitCSDUbm8s/MxbBB6ds4pY6Xlg==}
-
-  prosemirror-view@1.42.6:
-    resolution: {integrity: sha512-3g25f6hKV2bBxo3puH3EcYWmmVNSH0iWmNsMVT7sugDSpA025jgpOLarcDWr39SdzPjYMaiYtRdNtXialPSjEQ==}
 
   prosemirror-view@1.43.0:
     resolution: {integrity: sha512-MZOUuhD+Gv7Cp7UlgvyhptUfb920NkLBgymhyhaM8xp+JXQyLhkssS2EXZvMI3ZU3vRoz5z7mRC32udVgNYHqg==}
@@ -3574,13 +3557,13 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
-  '@nascencestudio/tapestry@0.7.2(astro@7.4.13(@types/node@22.20.5)(esbuild@0.28.2)(yaml@2.9.1))(studiocms@0.7.0(a1ba8a9232c9974dc0bcd56f16b3d836))':
+  '@nascencestudio/tapestry@0.7.4(astro@7.4.13(@types/node@22.20.5)(esbuild@0.28.2)(yaml@2.9.1))(studiocms@0.7.0(a1ba8a9232c9974dc0bcd56f16b3d836))':
     dependencies:
       '@atlaskit/pragmatic-drag-and-drop': 4.0.0
       '@atlaskit/pragmatic-drag-and-drop-hitbox': 3.0.0
-      '@preact/signals': 2.11.4(preact@10.29.8)
+      '@preact/signals': 2.11.4(preact@11.2.0)
       astro: 7.4.13(@types/node@22.20.5)(esbuild@0.28.2)(yaml@2.9.1)
-      preact: 10.29.8
+      preact: 11.2.0
       prosemirror-commands: 1.7.2
       prosemirror-history: 1.5.2
       prosemirror-keymap: 1.2.3
@@ -3659,10 +3642,10 @@ snapshots:
 
   '@preact/signals-core@1.14.5': {}
 
-  '@preact/signals@2.11.4(preact@10.29.8)':
+  '@preact/signals@2.11.4(preact@11.2.0)':
     dependencies:
       '@preact/signals-core': 1.14.5
-      preact: 10.29.8
+      preact: 11.2.0
 
   '@profoundlogic/hogan@3.0.4':
     dependencies:
@@ -4724,8 +4707,6 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.2
 
-  preact@10.29.8: {}
-
   preact@11.2.0: {}
 
   prismjs@1.30.0: {}
@@ -4736,15 +4717,15 @@ snapshots:
 
   prosemirror-commands@1.7.2:
     dependencies:
-      prosemirror-model: 1.25.12
+      prosemirror-model: 1.25.13
       prosemirror-state: 1.4.4
-      prosemirror-transform: 1.12.2
+      prosemirror-transform: 1.12.7
 
   prosemirror-history@1.5.2:
     dependencies:
       prosemirror-state: 1.4.4
-      prosemirror-transform: 1.12.2
-      prosemirror-view: 1.42.6
+      prosemirror-transform: 1.12.7
+      prosemirror-view: 1.43.0
       rope-sequence: 1.3.4
 
   prosemirror-keymap@1.2.3:
@@ -4752,45 +4733,31 @@ snapshots:
       prosemirror-state: 1.4.4
       w3c-keyname: 2.2.8
 
-  prosemirror-model@1.25.12:
-    dependencies:
-      orderedmap: 2.1.1
-
   prosemirror-model@1.25.13:
     dependencies:
       orderedmap: 2.1.1
 
   prosemirror-schema-list@1.6.1:
     dependencies:
-      prosemirror-model: 1.25.12
+      prosemirror-model: 1.25.13
       prosemirror-state: 1.4.4
-      prosemirror-transform: 1.12.2
+      prosemirror-transform: 1.12.7
 
   prosemirror-state@1.4.4:
     dependencies:
-      prosemirror-model: 1.25.12
-      prosemirror-transform: 1.12.2
-      prosemirror-view: 1.42.6
-
-  prosemirror-transform@1.12.2:
-    dependencies:
-      prosemirror-model: 1.25.12
+      prosemirror-model: 1.25.13
+      prosemirror-transform: 1.12.7
+      prosemirror-view: 1.43.0
 
   prosemirror-transform@1.12.7:
     dependencies:
-      prosemirror-model: 1.25.12
-
-  prosemirror-view@1.42.6:
-    dependencies:
-      prosemirror-model: 1.25.12
-      prosemirror-state: 1.4.4
-      prosemirror-transform: 1.12.2
+      prosemirror-model: 1.25.13
 
   prosemirror-view@1.43.0:
     dependencies:
-      prosemirror-model: 1.25.12
+      prosemirror-model: 1.25.13
       prosemirror-state: 1.4.4
-      prosemirror-transform: 1.12.2
+      prosemirror-transform: 1.12.7
 
   pure-rand@6.1.0: {}
 
